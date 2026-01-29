@@ -1,18 +1,11 @@
 /* home.page.scss */
 
-/* --- 1. CONFIGURACIÓN GENERAL --- */
-:host {
-  --ion-background-color: transparent;
-  --ion-text-color: #333333; 
-}
-
+/* --- 1. CONFIGURACIÓN DEL SCROLL (CRÍTICO) --- */
 ion-content {
   --background: transparent;
-  
-  /* --- [CORRECCIÓN SCROLL 1/2] --- */
-  /* Esto obliga al contenido a estar "físicamente" por encima del fondo */
-  position: relative; 
-  z-index: 10; 
+  /* Esto asegura que el contenido sea lo que recibe el dedo, no el fondo */
+  position: relative;
+  z-index: 10;
 }
 
 /* --- 2. FONDO PAISAJE --- */
@@ -23,9 +16,9 @@ ion-content {
   width: 100%;
   height: 100%;
   
-  /* --- [CORRECCIÓN SCROLL 2/2] --- */
-  z-index: 0;           /* Lo ponemos detrás del contenido (que tiene z-index 10) */
-  pointer-events: none; /* ¡CRÍTICO! Esto hace que los clics ATRAVIESEN el fondo */
+  /* ESTAS 2 LÍNEAS SON LA CLAVE DEL SCROLL: */
+  z-index: 0;           
+  pointer-events: none; /* Hace que el fondo sea "invisible" al tacto */
 
   background-image: url('../../assets/img/fondo-paisaje.png');
   background-repeat: no-repeat;
@@ -55,7 +48,7 @@ ion-content {
   letter-spacing: 1px;
 }
 
-/* --- ESTILOS DE LOS BOTONES NAVBAR --- */
+/* BOTONES NAVBAR */
 .nav-btn-register, .nav-btn-play {
   font-weight: 800;
   font-size: 0.9rem;
@@ -259,44 +252,32 @@ ion-icon {
   animation: floatUp 3s ease-in-out infinite;
 }
 
-/* --- SWIPER (CARRUSEL) CORREGIDO --- */
+/* --- SWIPER (CARRUSEL) --- */
 swiper-container {
   width: 100%;
   height: 530px;
   margin-bottom: 20px;
   --swiper-pagination-bottom: 0px;
   --swiper-pagination-color: #0088cc;
-  
-  /* Icono de la flecha: Tamaño equilibrado */
   --swiper-navigation-size: 18px; 
   --swiper-navigation-color: #0088cc;
-
-  /* IMPORTANTE: Esto empuja las flechas hacia los bordes extremos de la pantalla */
   --swiper-navigation-sides-offset: 5px; 
 }
 
-/* FORZAMOS EL CÍRCULO BLANCO */
 swiper-container::part(button-prev),
 swiper-container::part(button-next) {
   background-color: #ffffff !important; 
   background: #ffffff !important;
   opacity: 1 !important;
-  
-  /* Reducimos un poco el círculo para que quepa mejor (42px en vez de 50px) */
   width: 42px !important;
   height: 42px !important;
   border-radius: 50%;
-  
   box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-  
   display: grid;
   place-content: center;
-  
-  /* QUITAMOS los márgenes que las empujaban hacia adentro */
   margin: 0 !important;
 }
 
-/* Selectores de respaldo */
 .swiper-button-prev, .swiper-button-next {
   background-color: #ffffff !important;
   width: 42px !important;
@@ -304,10 +285,9 @@ swiper-container::part(button-next) {
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   margin: 0 !important;
-  left: 5px !important; /* Forzar posición al borde */
+  left: 5px !important; 
 }
 
-/* Ajuste específico para la flecha derecha */
 .swiper-button-next {
   right: 5px !important;
 }
