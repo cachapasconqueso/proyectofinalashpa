@@ -1,14 +1,14 @@
 /* home.page.scss */
 
-/* --- 1. CONFIGURACIÓN DEL SCROLL (CRÍTICO) --- */
+/* --- 1. CONFIGURACIÓN DEL SCROLL Y ESTRUCTURA --- */
 ion-content {
   --background: transparent;
   position: relative;
   z-index: 10;
-
   /* 🔧 CLAVE PARA QUE EL SCROLL FUNCIONE EN VERCEL */
   overflow-y: auto;
   touch-action: pan-y;
+  --padding-top: 70px; /* Espacio para la navbar */
 }
 
 /* --- 2. FONDO PAISAJE --- */
@@ -18,10 +18,8 @@ ion-content {
   left: 0;
   width: 100%;
   height: 100%;
-
   z-index: 0;
   pointer-events: none;
-
   background-image: url('../../assets/img/fondo-paisaje.png');
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -32,16 +30,35 @@ ion-content {
 .custom-navbar {
   --background: #ffffff;
   background: #ffffff;
-
-  /* 🔧 NO fixed en Ionic */
   position: sticky;
   top: 0;
-
   width: 100%;
   z-index: 100;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   padding-top: 5px;
   padding-bottom: 5px;
+
+  ion-toolbar {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    --min-height: 64px;
+  }
+
+  ion-title {
+    flex: 0 0 auto;
+    padding-left: 10px;
+  }
+
+  ion-buttons {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+  }
+
+  ion-button {
+    white-space: nowrap;
+  }
 }
 
 .nav-logo {
@@ -86,7 +103,7 @@ ion-icon {
 /* --- 4. HERO SECTION --- */
 .hero-section {
   text-align: center;
-  padding-top: 110px;
+  padding-top: 40px;
   margin-bottom: 40px;
 
   .main-title {
@@ -119,11 +136,6 @@ ion-icon {
     filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
   }
 }
-
-/* 🔽 TODO LO DEMÁS QUEDA IGUAL A COMO LO TENÍAS 🔽 */
-/* juego, swiper, inputs, animaciones, registro */
-/* NO SE TOCA */
-
 
 /* --- 5. TARJETAS DE INFO --- */
 .info-card {
@@ -183,6 +195,8 @@ ion-icon {
   padding-top: 40px; 
   max-width: 1200px; 
   margin: 0 auto;
+  position: relative;
+  z-index: 5;
 
   .game-title {
     color: #ff4141; 
@@ -322,39 +336,6 @@ swiper-slide {
   object-fit: contain;
 }
 
-/* --- INPUT Y BOTÓN --- */
-.input-zone {
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.rounded-input {
-  --background: #ffffff;
-  background: #ffffff; 
-  border-radius: 50px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding-inline: 0 !important;
-  --padding-start: 20px;
-  --padding-end: 20px;
-  --border-width: 0;
-  --inner-border-width: 0;
-  overflow: hidden; 
-}
-
-.rounded-input ion-input {
-  --padding-start: 0; 
-}
-
-.btn-listo {
-  --background: #8BC34A; 
-  font-weight: 900;
-  letter-spacing: 1px;
-  border-radius: 50px; 
-  height: 50px;
-}
-
 /* --- ANIMACIONES --- */
 .animate-entry {
   animation: slideUp 1s ease-out;
@@ -373,8 +354,7 @@ swiper-slide {
 
 .shake-animation {
   animation: shake 0.5s;
-  border: 2px solid #eb445a;
-  border-radius: 50px;
+  border: 2px solid #eb445a !important;
 }
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
@@ -387,6 +367,8 @@ swiper-slide {
   padding: 0 20px 80px 20px;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 5;
 
   .form-container {
     width: 100%;
@@ -410,26 +392,6 @@ swiper-slide {
   }
 }
 
-ion-item.rounded-input {
-  --background: #f0f4f8; 
-  border-radius: 15px;
-  margin-bottom: 15px;
-  box-shadow: none; 
-  border: 1px solid rgba(0,0,0,0.05);
-
-  ion-label {
-    color: #888;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  ion-input {
-    font-weight: bold;
-    color: #333;
-    --placeholder-opacity: 0.4;
-  }
-}
-
 .btn-container {
   max-width: 400px;
   margin: 30px auto 0 auto;
@@ -444,97 +406,59 @@ ion-item.rounded-input {
   font-size: 1.1rem;
   --box-shadow: 0 5px 15px rgba(255, 143, 85, 0.4);
 }
-/* ============================= */
-/* FIX NAVBAR EN VERCEL (CRÍTICO) */
-/* ============================= */
 
-.custom-navbar ion-toolbar {
-  display: flex !important;
-  align-items: center;
-  justify-content: space-between;
-
-  --min-height: 64px;
+.btn-listo {
+  --background: #8BC34A; 
+  font-weight: 900;
+  letter-spacing: 1px;
+  border-radius: 50px; 
+  height: 50px;
 }
 
-/* Fuerza alineación correcta del título */
-.custom-navbar ion-title {
-  flex: 0 0 auto;
-  padding-left: 10px;
-}
+/* ========================================= */
+/* 🔧 REGLAS MAESTRAS PARA LOS INPUTS (FIX) */
+/* ========================================= */
 
-/* Fuerza botones en fila horizontal */
-.custom-navbar ion-buttons {
-  display: flex !important;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Evita que los botones se partan */
-.custom-navbar ion-button {
-  white-space: nowrap;
-}
-/* ============================= */
-/* 🔧 FIX FINAL VISIBILIDAD INPUTS */
-/* ============================= */
-
-ion-content {
-  --padding-top: 70px;
-  --offset-top: 70px;
-}
-
-/* Asegura que el contenido esté por encima del fondo */
-.game-section,
-.register-section {
-  position: relative;
-  z-index: 5;
-}
-
-/* Fuerza visibilidad de inputs */
-ion-item,
-ion-input,
 .input-zone {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   position: relative;
   z-index: 10;
 }
-/* --- COPIA ESTO AL FINAL DE TU SCSS --- */
 
-.fondo-fijo {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-  background: url('/assets/img/fondo-paisaje.png') no-repeat center center / cover;
-  z-index: -2;
-}
-
-/* CAJA BLANCA PARA LOS INPUTS (IMPORTANTE) */
-.caja-input {
-  background-color: #ffffff !important; /* Fondo blanco forzoso */
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 0 10px;
-  margin-bottom: 10px;
-  height: 50px;
-  display: flex;
+/* Esta regla UNIFICADA asegura que todos los inputs sean blancos y visibles */
+.rounded-input {
+  /* Fondo Blanco Sólido */
+  --background: #ffffff !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  
+  /* Borde y Forma */
+  border: 1px solid #ccc !important;
+  border-radius: 50px !important;
+  --border-radius: 50px !important;
+  margin-bottom: 15px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+  
+  /* Reset de Ionic para evitar transparencia */
+  opacity: 1 !important;
+  --inner-border-width: 0;
+  display: flex !important;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* TEXTO NEGRO FORZOSO */
-.input-negro {
+/* Texto negro forzoso */
+.rounded-input ion-input {
   --color: #000000 !important;
-  --placeholder-color: #555 !important;
-  color: black !important;
+  color: #000000 !important;
+  --placeholder-color: #666666 !important;
+  --placeholder-opacity: 0.7 !important;
+  font-weight: 600;
 }
 
-.label-negro {
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-  display: block;
+/* Etiquetas (Labels) negras */
+.rounded-input ion-label {
+  color: #333333 !important;
+  font-weight: 700 !important;
 }
-
-.glass-box {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 20px;
-  margin: 10px;
-}
-

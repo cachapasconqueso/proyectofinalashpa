@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { FormsModule } from '@angular/forms'; // <--- ESTO ARREGLA LOS INPUTS
+import { FormsModule } from '@angular/forms'; 
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -10,8 +10,8 @@ register();
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  standalone: true, // <--- ESTO ES LA CLAVE SI NO TIENES MODULE
-  imports: [IonicModule, CommonModule, FormsModule], // <--- AQUÍ CARGAMOS LOS FORMULARIOS
+  standalone: true, 
+  imports: [IonicModule, CommonModule, FormsModule], 
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage {

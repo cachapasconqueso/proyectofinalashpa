@@ -1,129 +1,187 @@
 <ion-header class="ion-no-border custom-navbar">
   <ion-toolbar>
     <ion-title class="nav-logo">ASHPA</ion-title>
+
     <ion-buttons slot="end">
       <ion-button shape="round" class="nav-btn-play" (click)="irAJuego()">
-        Jugar <ion-icon slot="end" name="game-controller-outline"></ion-icon>
+        Jugar
+        <ion-icon slot="end" name="game-controller-outline"></ion-icon>
       </ion-button>
+
       <ion-button shape="round" class="nav-btn-register" (click)="irARegistro()">
-        Regístrate <ion-icon slot="end" name="person-add-outline"></ion-icon>
+        Regístrate
+        <ion-icon slot="end" name="person-add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<div class="fondo-fijo"></div>
+<ion-content class="transparent-content">
 
-<ion-content [fullscreen]="true" class="contenido-transparente">
-
-  <div class="background-landscape" style="z-index: -1; pointer-events: none; width: 100%; height: 100%; position: absolute;">
+  <div class="background-landscape"
+       style="z-index: -1; pointer-events: none; width: 100%; height: 100%;">
     <div class="sky"></div>
   </div>
 
-  <div class="main-wrapper" style="padding-top: 20px;">
-    
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1 class="main-title">ASHPA</h1>
-        <p class="subtitle">Aprendamos juntos nuestro idioma</p>
-        <div class="img-container">
-          <img src="assets/img/ninos2.png" class="hero-img animate-entry">
-        </div>
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="main-title">ASHPA</h1>
+      <p class="subtitle">Aprendamos juntos nuestro idioma</p>
+
+      <div class="img-container">
+        <img src="assets/img/ninos2.png" class="hero-img animate-entry">
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="info-card fade-in">
-      <div class="glass-box with-avatar">
-        <div class="avatar-circle">
-          <img src="assets/img/pensar.png" class="avatar-img">
-        </div>
-        <h2>¿QUIÉNES SOMOS?</h2>
-        <p>Somos un equipo que busca mantener vivo el quichua.</p>
+  <section class="info-card fade-in">
+    <div class="glass-box with-avatar">
+      <div class="avatar-circle animate-float">
+        <img src="assets/img/pensar.png" class="avatar-img">
       </div>
-    </section>
+      <h2>¿QUIÉNES SOMOS?</h2>
+      <p>
+        Somos un equipo multidisciplinario unido por un objetivo: diseñar
+        soluciones interactivas que aseguren que el quichua no sea solo un
+        recuerdo, sino un lenguaje vivo para las nuevas generaciones.
+      </p>
+    </div>
+  </section>
 
-    <section class="game-section" id="seccion-juego">
-      <h2 class="game-title">¡A Jugar!</h2>
+  <section class="info-card fade-in">
+    <div class="glass-box with-avatar">
+      <div class="avatar-circle animate-float">
+        <img src="assets/img/cometa.png" class="avatar-img">
+      </div>
+      <h2>MISIÓN</h2>
+      <p>
+        Fusionar tecnología y tradición para mantener vivo el quichua,
+        creando una experiencia interactiva donde aprender nuestra lengua
+        ancestral sea tan divertido como jugar.
+      </p>
+    </div>
+  </section>
 
-      <div class="game-layout">
-        <div class="game-col-left">
-          <swiper-container #swiper effect="flip" [pagination]="true" slides-per-view="1" class="game-swiper">
-            <swiper-slide *ngFor="let carta of cards">
-              <div class="game-card">
-                <img [src]="carta.image" class="card-full-img">
-              </div>
-            </swiper-slide>
-          </swiper-container>
+  <section class="game-section" id="seccion-juego">
+    <h2 class="game-title">¡A Jugar!</h2>
 
-          <div class="input-zone">
-            <div class="caja-input">
-              <ion-input 
-                placeholder="Escribe en español..." 
-                [(ngModel)]="userAnswer"
-                class="input-negro">
-              </ion-input>
+    <div class="game-layout">
+      <div class="game-col-left">
+        <swiper-container #swiper effect="flip" [pagination]="true" [navigation]="true"
+          slides-per-view="1" class="game-swiper">
+
+          <swiper-slide *ngFor="let carta of cards">
+            <div class="game-card">
+              <img [src]="carta.image" class="card-full-img">
             </div>
+          </swiper-slide>
 
-            <ion-button expand="block" shape="round" class="btn-listo" (click)="checkAnswer()">
-              LISTO !!
-            </ion-button>
-          </div>
-        </div>
+        </swiper-container>
 
-        <div class="game-col-right">
-          <div class="instructions-box glass-box">
-            <h3>Instrucciones</h3>
-            <p>Mira la imagen, escribe la palabra y dale a Listo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="input-zone">
+          <ion-item lines="none" class="rounded-input"
+            [class.shake-animation]="inputError">
+            <ion-input
+              placeholder="Respuesta en español..."
+              [(ngModel)]="userAnswer"
+              (keyup.enter)="checkAnswer()">
+            </ion-input>
+          </ion-item>
 
-    <section class="register-section" id="seccion-registro">
-      <div class="glass-box form-container">
-        <h2>¡Únete a la Aventura!</h2>
-        
-        <div class="formulario-simple">
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="12" size-md="6">
-                        <label class="label-negro">Nombres</label>
-                        <div class="caja-input">
-                            <ion-input type="text" [(ngModel)]="usuario.nombres" class="input-negro"></ion-input>
-                        </div>
-                    </ion-col>
-                    <ion-col size="12" size-md="6">
-                        <label class="label-negro">Apellidos</label>
-                        <div class="caja-input">
-                            <ion-input type="text" [(ngModel)]="usuario.apellidos" class="input-negro"></ion-input>
-                        </div>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row>
-                    <ion-col size="12" size-md="6">
-                        <label class="label-negro">Correo</label>
-                        <div class="caja-input">
-                            <ion-input type="email" [(ngModel)]="usuario.correo" class="input-negro"></ion-input>
-                        </div>
-                    </ion-col>
-                    <ion-col size="12" size-md="6">
-                        <label class="label-negro">País</label>
-                        <div class="caja-input">
-                            <ion-input type="text" [(ngModel)]="usuario.pais" class="input-negro"></ion-input>
-                        </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-
-            <ion-button expand="block" shape="round" class="btn-register" (click)="registrarUsuario()">
-              REGISTRARME
-            </ion-button>
+          <ion-button expand="block" shape="round" class="btn-listo"
+            (click)="checkAnswer()">
+            LISTO !!
+          </ion-button>
         </div>
       </div>
-    </section>
 
-    <div style="height: 100px;"></div>
-  </div>
+      <div class="game-col-right">
+        <div class="instructions-box glass-box">
+          <h3>¿Cómo jugar?</h3>
+          <ul>
+            <li><strong>Mira</strong> la imagen de la carta.</li>
+            <li><strong>Escribe</strong> el nombre en español.</li>
+            <li><strong>Presiona</strong> "LISTO".</li>
+          </ul>
+        </div>
+
+        <div class="mascot-container">
+          <img src="assets/img/juego.png"
+            class="boy-mascot animate-float">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="register-section" id="seccion-registro">
+    <div class="glass-box form-container">
+      <h2>¡Únete a la Aventura!</h2>
+      <p class="form-subtitle">
+        Regístrate para guardar tu progreso próximamente.
+      </p>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-item lines="none" class="rounded-input">
+              <ion-label position="stacked">Nombres</ion-label>
+              <ion-input [(ngModel)]="usuario.nombres"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" size-md="6">
+            <ion-item lines="none" class="rounded-input">
+              <ion-label position="stacked">Apellidos</ion-label>
+              <ion-input [(ngModel)]="usuario.apellidos"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-item lines="none" class="rounded-input">
+              <ion-label position="stacked">Fecha de Nacimiento</ion-label>
+              <ion-input type="date"
+                [(ngModel)]="usuario.fechaNacimiento">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" size-md="6">
+            <ion-item lines="none" class="rounded-input">
+              <ion-label position="stacked">Correo Electrónico</ion-label>
+              <ion-input type="email"
+                [(ngModel)]="usuario.correo">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-item lines="none" class="rounded-input">
+              <ion-label position="stacked">País</ion-label>
+              <ion-input [(ngModel)]="usuario.pais"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" size-md="6">
+            <ion-item lines="none" class="rounded-input">
+              <ion-label position="stacked">Provincia / Estado</ion-label>
+              <ion-input [(ngModel)]="usuario.estado"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="btn-container">
+        <ion-button expand="block" shape="round" class="btn-register"
+          (click)="registrarUsuario()">
+          REGISTRARME
+          <ion-icon slot="end" name="rocket-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </section>
 
 </ion-content>
