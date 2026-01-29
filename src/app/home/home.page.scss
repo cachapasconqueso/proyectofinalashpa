@@ -1,0 +1,447 @@
+/* home.page.scss */
+
+/* --- 1. CONFIGURACIÓN GENERAL --- */
+:host {
+  --ion-background-color: transparent;
+  --ion-text-color: #333333; 
+}
+ion-content {
+  --background: transparent;
+}
+
+/* --- 2. FONDO PAISAJE --- */
+.background-landscape {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('../../assets/img/fondo-paisaje.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover; 
+}
+
+/* --- 3. NAVBAR BLANCA SÓLIDA --- */
+.custom-navbar {
+  --background: #ffffff; 
+  background: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.nav-logo {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: #E65100;
+  letter-spacing: 1px;
+}
+
+/* --- ESTILOS DE LOS BOTONES NAVBAR --- */
+.nav-btn-register, .nav-btn-play {
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  --box-shadow: none; 
+  height: 45px;            
+  --padding-start: 25px;   
+  --padding-end: 2px;     
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn-register {
+  --color: #ffffff;
+  --background: #0088cc;
+  margin-right: 10px;
+}
+
+.nav-btn-play {
+  --color: #ffffff;
+  --background: #8BC34A;
+  margin-right: 8px; 
+}
+
+ion-icon {
+  margin-left: 8px;
+  font-size: 1.1em;
+}
+
+/* --- 4. HERO SECTION --- */
+.hero-section {
+  text-align: center;
+  padding-top: 110px; 
+  margin-bottom: 40px;
+
+  .main-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #E65100; 
+    text-shadow: 2px 2px 0px #ffffff, 0 0 10px rgba(255, 255, 255, 0.5);
+    margin: 0;
+    letter-spacing: 2px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .subtitle {
+    color: #444; 
+    font-weight: 600;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.6); 
+    border-radius: 10px;
+    display: inline-block;
+    padding: 5px 15px;
+  }
+
+  .img-container {
+    margin-top: 20px;
+  }
+
+  .hero-img {
+    width: 80%;
+    max-width: 350px;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+  }
+}
+
+/* --- 5. TARJETAS DE INFO --- */
+.info-card {
+  padding: 0 20px;
+  margin-bottom: 40px;
+  margin-top: 60px; 
+
+  .glass-box {
+    background: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+    .avatar-circle {
+      position: absolute;
+      top: -50px; 
+      left: 50%;
+      transform: translateX(-50%); 
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #FF8F55; 
+      border: 5px solid rgba(255, 255, 255, 0.9); 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      overflow: hidden;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &.with-avatar {
+      padding-top: 70px;
+    }
+
+    h2 {
+      color: #FF8F55;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  }
+}
+
+/* --- 6. SECCIÓN DEL JUEGO --- */
+.game-section {
+  text-align: center;
+  padding-bottom: 80px;
+  padding-top: 40px; 
+  max-width: 1200px; 
+  margin: 0 auto;
+
+  .game-title {
+    color: #ff4141; 
+    font-weight: 900;
+    font-size: 3rem;
+    text-shadow: 2px 2px 0 #fff; 
+    margin-bottom: 30px;
+  }
+}
+
+.game-layout {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-items: center; 
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.game-col-left {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.game-col-right {
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instructions-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 25px;
+  text-align: left;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  margin-bottom: 20px;
+
+  h3 {
+    color: #E65100;
+    margin-top: 0;
+    font-weight: 800;
+  }
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+    
+    li {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.4;
+    }
+  }
+}
+
+.mascot-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.boy-mascot {
+  width: 180px;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
+
+.animate-float {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+/* --- SWIPER (CARRUSEL) CORREGIDO --- */
+swiper-container {
+  width: 100%;
+  height: 530px;
+  margin-bottom: 20px;
+  --swiper-pagination-bottom: 0px;
+  --swiper-pagination-color: #0088cc;
+  
+  /* Icono de la flecha: Tamaño equilibrado */
+  --swiper-navigation-size: 18px; 
+  --swiper-navigation-color: #0088cc;
+
+  /* IMPORTANTE: Esto empuja las flechas hacia los bordes extremos de la pantalla */
+  --swiper-navigation-sides-offset: 5px; 
+}
+
+/* FORZAMOS EL CÍRCULO BLANCO */
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  background-color: #ffffff !important; 
+  background: #ffffff !important;
+  opacity: 1 !important;
+  
+  /* Reducimos un poco el círculo para que quepa mejor (42px en vez de 50px) */
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50%;
+  
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  
+  display: grid;
+  place-content: center;
+  
+  /* QUITAMOS los márgenes que las empujaban hacia adentro */
+  margin: 0 !important;
+}
+
+/* Selectores de respaldo */
+.swiper-button-prev, .swiper-button-next {
+  background-color: #ffffff !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin: 0 !important;
+  left: 5px !important; /* Forzar posición al borde */
+}
+
+/* Ajuste específico para la flecha derecha */
+.swiper-button-next {
+  right: 5px !important;
+}
+
+swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-card {
+  width: 280px;
+  height: 460px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  background: rgba(255, 255, 255, 0);
+}
+
+.card-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --- INPUT Y BOTÓN --- */
+.input-zone {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.rounded-input {
+  --background: #ffffff;
+  background: #ffffff; 
+  border-radius: 50px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding-inline: 0 !important;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --border-width: 0;
+  --inner-border-width: 0;
+  overflow: hidden; 
+}
+
+.rounded-input ion-input {
+  --padding-start: 0; 
+}
+
+.btn-listo {
+  --background: #8BC34A; 
+  font-weight: 900;
+  letter-spacing: 1px;
+  border-radius: 50px; 
+  height: 50px;
+}
+
+/* --- ANIMACIONES --- */
+.animate-entry {
+  animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatUp {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.shake-animation {
+  animation: shake 0.5s;
+  border: 2px solid #eb445a;
+  border-radius: 50px;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* --- SECCIÓN DE REGISTRO --- */
+.register-section {
+  padding: 0 20px 80px 20px;
+  display: flex;
+  justify-content: center;
+
+  .form-container {
+    width: 100%;
+    max-width: 800px; 
+    background: rgba(255, 255, 255, 0.95); 
+    padding: 40px 20px;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+
+    h2 {
+      color: #0088cc; 
+      font-weight: 900;
+      margin-top: 0;
+      font-size: 2.2rem;
+    }
+
+    .form-subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+ion-item.rounded-input {
+  --background: #f0f4f8; 
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: none; 
+  border: 1px solid rgba(0,0,0,0.05);
+
+  ion-label {
+    color: #888;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  ion-input {
+    font-weight: bold;
+    color: #333;
+    --placeholder-opacity: 0.4;
+  }
+}
+
+.btn-container {
+  max-width: 400px;
+  margin: 30px auto 0 auto;
+}
+
+.btn-register {
+  --background: #FF8F55; 
+  --background-hover: #e67e45;
+  font-weight: 900;
+  letter-spacing: 1px;
+  height: 55px;
+  font-size: 1.1rem;
+  --box-shadow: 0 5px 15px rgba(255, 143, 85, 0.4);
+}

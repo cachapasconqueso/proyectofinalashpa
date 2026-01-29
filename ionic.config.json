@@ -1,0 +1,7 @@
+{
+  "name": "ashpa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
