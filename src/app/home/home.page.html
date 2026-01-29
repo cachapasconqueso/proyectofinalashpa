@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border custom-navbar">
   <ion-toolbar>
     <ion-title class="nav-logo">ASHPA</ion-title>
-    
+
     <ion-buttons slot="end">
       <ion-button shape="round" class="nav-btn-play" (click)="irAJuego()">
         Jugar
@@ -13,21 +13,21 @@
         <ion-icon slot="end" name="person-add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
-<div class="background-landscape" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
-  <div class="sky"></div>
-</div>
+<ion-content class="transparent-content">
 
-<ion-content [fullscreen]="true" style="--background: transparent; background: transparent;">
-  
+  <div class="background-landscape"
+       style="z-index: -1; pointer-events: none; width: 100%; height: 100%;">
+    <div class="sky"></div>
+  </div>
+
   <section class="hero-section">
     <div class="hero-content">
       <h1 class="main-title">ASHPA</h1>
       <p class="subtitle">Aprendamos juntos nuestro idioma</p>
-      
+
       <div class="img-container">
         <img src="assets/img/ninos2.png" class="hero-img animate-entry">
       </div>
@@ -40,7 +40,11 @@
         <img src="assets/img/pensar.png" class="avatar-img">
       </div>
       <h2>¿QUIÉNES SOMOS?</h2>
-      <p>Somos un equipo multidisciplinario unido por un objetivo: diseñar soluciones interactivas que aseguren que el quichua no sea solo un recuerdo, sino un lenguaje vivo para las nuevas generaciones.</p>
+      <p>
+        Somos un equipo multidisciplinario unido por un objetivo: diseñar
+        soluciones interactivas que aseguren que el quichua no sea solo un
+        recuerdo, sino un lenguaje vivo para las nuevas generaciones.
+      </p>
     </div>
   </section>
 
@@ -50,27 +54,44 @@
         <img src="assets/img/cometa.png" class="avatar-img">
       </div>
       <h2>MISIÓN</h2>
-      <p>Fusionar tecnología y tradición para mantener vivo el quichua, creando una experiencia interactiva donde aprender nuestra lengua ancestral sea tan divertido como jugar..</p>
+      <p>
+        Fusionar tecnología y tradición para mantener vivo el quichua,
+        creando una experiencia interactiva donde aprender nuestra lengua
+        ancestral sea tan divertido como jugar.
+      </p>
     </div>
   </section>
 
   <section class="game-section" id="seccion-juego">
     <h2 class="game-title">¡A Jugar!</h2>
+
     <div class="game-layout">
       <div class="game-col-left">
-        <swiper-container #swiper effect="flip" [pagination]="true" [navigation]="true" slides-per-view="1" class="game-swiper">
+        <swiper-container #swiper effect="flip" [pagination]="true" [navigation]="true"
+          slides-per-view="1" class="game-swiper">
+
           <swiper-slide *ngFor="let carta of cards">
             <div class="game-card">
               <img [src]="carta.image" class="card-full-img">
             </div>
           </swiper-slide>
+
         </swiper-container>
 
         <div class="input-zone">
-          <ion-item lines="none" class="rounded-input" [class.shake-animation]="inputError">
-            <ion-input placeholder="Respuesta en español..." [(ngModel)]="userAnswer" (keyup.enter)="checkAnswer()"></ion-input>
+          <ion-item lines="none" class="rounded-input"
+            [class.shake-animation]="inputError">
+            <ion-input
+              placeholder="Respuesta en español..."
+              [(ngModel)]="userAnswer"
+              (keyup.enter)="checkAnswer()">
+            </ion-input>
           </ion-item>
-          <ion-button expand="block" shape="round" class="btn-listo" (click)="checkAnswer()">LISTO !!</ion-button>
+
+          <ion-button expand="block" shape="round" class="btn-listo"
+            (click)="checkAnswer()">
+            LISTO !!
+          </ion-button>
         </div>
       </div>
 
@@ -80,11 +101,13 @@
           <ul>
             <li><strong>Mira</strong> la imagen de la carta.</li>
             <li><strong>Escribe</strong> el nombre en español.</li>
-            <li> <strong>Presiona</strong> "LISTO".</li>
+            <li><strong>Presiona</strong> "LISTO".</li>
           </ul>
         </div>
+
         <div class="mascot-container">
-          <img src="assets/img/juego.png" class="boy-mascot animate-float">
+          <img src="assets/img/juego.png"
+            class="boy-mascot animate-float">
         </div>
       </div>
     </div>
@@ -93,20 +116,23 @@
   <section class="register-section" id="seccion-registro">
     <div class="glass-box form-container">
       <h2>¡Únete a la Aventura!</h2>
-      <p class="form-subtitle">Regístrate para guardar tu progreso próximamente.</p>
-      
+      <p class="form-subtitle">
+        Regístrate para guardar tu progreso próximamente.
+      </p>
+
       <ion-grid>
         <ion-row>
           <ion-col size="12" size-md="6">
             <ion-item lines="none" class="rounded-input">
               <ion-label position="stacked">Nombres</ion-label>
-              <ion-input type="text" placeholder="Ej. Juan" [(ngModel)]="usuario.nombres"></ion-input>
+              <ion-input [(ngModel)]="usuario.nombres"></ion-input>
             </ion-item>
           </ion-col>
+
           <ion-col size="12" size-md="6">
             <ion-item lines="none" class="rounded-input">
               <ion-label position="stacked">Apellidos</ion-label>
-              <ion-input type="text" placeholder="Ej. Pérez" [(ngModel)]="usuario.apellidos"></ion-input>
+              <ion-input [(ngModel)]="usuario.apellidos"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -115,13 +141,18 @@
           <ion-col size="12" size-md="6">
             <ion-item lines="none" class="rounded-input">
               <ion-label position="stacked">Fecha de Nacimiento</ion-label>
-              <ion-input type="date" [(ngModel)]="usuario.fechaNacimiento"></ion-input>
+              <ion-input type="date"
+                [(ngModel)]="usuario.fechaNacimiento">
+              </ion-input>
             </ion-item>
           </ion-col>
+
           <ion-col size="12" size-md="6">
             <ion-item lines="none" class="rounded-input">
               <ion-label position="stacked">Correo Electrónico</ion-label>
-              <ion-input type="email" placeholder="correo@ejemplo.com" [(ngModel)]="usuario.correo"></ion-input>
+              <ion-input type="email"
+                [(ngModel)]="usuario.correo">
+              </ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -130,20 +161,22 @@
           <ion-col size="12" size-md="6">
             <ion-item lines="none" class="rounded-input">
               <ion-label position="stacked">País</ion-label>
-              <ion-input type="text" placeholder="Ej. Ecuador" [(ngModel)]="usuario.pais"></ion-input>
+              <ion-input [(ngModel)]="usuario.pais"></ion-input>
             </ion-item>
           </ion-col>
+
           <ion-col size="12" size-md="6">
             <ion-item lines="none" class="rounded-input">
               <ion-label position="stacked">Provincia / Estado</ion-label>
-              <ion-input type="text" placeholder="Ej. Pichincha" [(ngModel)]="usuario.estado"></ion-input>
+              <ion-input [(ngModel)]="usuario.estado"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
 
       <div class="btn-container">
-        <ion-button expand="block" shape="round" class="btn-register" (click)="registrarUsuario()">
+        <ion-button expand="block" shape="round" class="btn-register"
+          (click)="registrarUsuario()">
           REGISTRARME
           <ion-icon slot="end" name="rocket-outline"></ion-icon>
         </ion-button>
