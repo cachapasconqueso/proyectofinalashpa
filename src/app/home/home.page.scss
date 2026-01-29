@@ -473,3 +473,27 @@ ion-item.rounded-input {
 .custom-navbar ion-button {
   white-space: nowrap;
 }
+/* ============================= */
+/* 🔧 FIX FINAL VISIBILIDAD INPUTS */
+/* ============================= */
+
+ion-content {
+  --padding-top: 70px;
+  --offset-top: 70px;
+}
+
+/* Asegura que el contenido esté por encima del fondo */
+.game-section,
+.register-section {
+  position: relative;
+  z-index: 5;
+}
+
+/* Fuerza visibilidad de inputs */
+ion-item,
+ion-input,
+.input-zone {
+  position: relative;
+  z-index: 10;
+}
+
