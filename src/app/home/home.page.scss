@@ -496,4 +496,45 @@ ion-input,
   position: relative;
   z-index: 10;
 }
+/* --- COPIA ESTO AL FINAL DE TU SCSS --- */
+
+.fondo-fijo {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  background: url('/assets/img/fondo-paisaje.png') no-repeat center center / cover;
+  z-index: -2;
+}
+
+/* CAJA BLANCA PARA LOS INPUTS (IMPORTANTE) */
+.caja-input {
+  background-color: #ffffff !important; /* Fondo blanco forzoso */
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* TEXTO NEGRO FORZOSO */
+.input-negro {
+  --color: #000000 !important;
+  --placeholder-color: #555 !important;
+  color: black !important;
+}
+
+.label-negro {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 10px;
+}
 
