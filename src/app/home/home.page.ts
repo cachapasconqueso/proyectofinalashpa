@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // <--- ESTO ARREGLA LOS INPUTS
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -10,8 +10,8 @@ register();
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  standalone: true, // <--- ESTO ES LA CLAVE SI NO TIENES MODULE
+  imports: [IonicModule, CommonModule, FormsModule], // <--- AQUÍ CARGAMOS LOS FORMULARIOS
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage {
@@ -21,7 +21,6 @@ export class HomePage {
   userAnswer = '';
   inputError = false;
 
-  // --- DATOS PARA EL REGISTRO ---
   usuario = {
     nombres: '',
     apellidos: '',
@@ -69,7 +68,6 @@ export class HomePage {
 
   constructor(private toastController: ToastController) {}
 
-  // --- NAVEGACIÓN SUAVE ---
   irARegistro() {
     const element = document.getElementById('seccion-registro');
     if (element) {
@@ -84,21 +82,25 @@ export class HomePage {
     }
   }
 
-  // Lógica del Juego
   async checkAnswer() {
-    const swiperEl = this.swiperRef?.nativeElement.swiper;
+    if (!this.swiperRef) return;
+    const swiperEl = this.swiperRef.nativeElement.swiper;
     const activeIndex = swiperEl.activeIndex;
+
+    if (!this.cards[activeIndex]) return;
+
     const currentCard = this.cards[activeIndex];
     const answer = this.userAnswer.toLowerCase().trim();
 
     if (answer === currentCard.answer) {
-      this.mostrarMensaje('¡Muy bien! ', 'success');
+      this.mostrarMensaje('¡Muy bien! Correcto', 'success');
       this.userAnswer = '';
       this.inputError = false;
+      
       if (activeIndex < this.cards.length - 1) {
         setTimeout(() => { swiperEl.slideNext(); }, 500);
       } else {
-        this.mostrarMensaje('¡Juego completado!', 'warning');
+        this.mostrarMensaje('¡Felicidades! Completaste el juego', 'warning');
       }
     } else {
       this.inputError = true;
@@ -107,10 +109,9 @@ export class HomePage {
     }
   }
 
-  // --- LÓGICA DE REGISTRO ---
   async registrarUsuario() {
-    if (!this.usuario.nombres || !this.usuario.apellidos || !this.usuario.correo || !this.usuario.pais) {
-      this.mostrarMensaje('Por favor completa todos los campos', 'danger');
+    if (!this.usuario.nombres || !this.usuario.correo) {
+      this.mostrarMensaje('Por favor completa los campos obligatorios', 'danger');
       return;
     }
     console.log('Datos listos para enviar:', this.usuario);
