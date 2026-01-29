@@ -462,3 +462,52 @@ swiper-slide {
   color: #333333 !important;
   font-weight: 700 !important;
 }
+/* 🔧 FIX inputs Ionic en producción (Vercel) */
+
+input,
+input[type="text"] {
+  display: block;
+  width: 320px;
+  max-width: 90%;
+  height: 48px;
+
+  padding: 12px 16px;
+  margin: 20px auto;
+
+  background: #ffffff !important;
+  color: #333 !important;
+
+  border-radius: 25px;
+  border: none;
+
+  font-size: 16px;
+  outline: none;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Placeholder visible */
+input::placeholder {
+  color: #999;
+}
+
+/* Botón LISTO */
+button,
+.btn-listo {
+  display: block;
+  width: 220px;
+  height: 48px;
+
+  margin: 20px auto;
+
+  background: #8bc34a !important;
+  color: white !important;
+
+  border-radius: 25px;
+  border: none;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
