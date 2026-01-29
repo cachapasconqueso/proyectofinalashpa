@@ -33,16 +33,22 @@ ion-content {
   --background: #ffffff;
   background: #ffffff;
 
-  /* 🔧 NO fixed en Ionic */
   position: sticky;
   top: 0;
+  z-index: 100;
 
   width: 100%;
-  z-index: 100;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding-top: 5px;
-  padding-bottom: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  /* 🔥 ESTO ES LO QUE FALTABA */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
 
 .nav-logo {
   font-family: 'Nunito', sans-serif;
